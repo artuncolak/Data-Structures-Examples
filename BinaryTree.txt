@@ -1,0 +1,6 @@
+Neden Ağaç Kullanılır
+
+    1-Dosya Sistemlerinde
+    2-Ortalama Erişim - Arama(Diziden Yavaş Bağlı listeden hızlı)
+    3-Ortalama Ekleme - silme Sağlar (Diziden Hızlı Bağlı Listeden Yavaş)
+    4-Limitsizdir
