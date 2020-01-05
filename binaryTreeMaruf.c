@@ -11,7 +11,7 @@ struct Node {
 };
 
 struct Node *newNode(int data) {
-    struct Node *node = (struct Node *) malloc(sizeof(struct Node));
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
 
     node->data = data;
 
@@ -21,30 +21,34 @@ struct Node *newNode(int data) {
 }
 
 struct Node *insert(struct Node *q, int x) {
-    if (q == NULL) return newNode(x);
-    else if (x <= q->data) q->left = insert(q->left, x);
+    if (q == NULL)
+        return newNode(x);
+    else if (x <= q->data)
+        q->left = insert(q->left, x);
     else
         q->right = insert(q->right, x);
     return (q);
 }
 
-int size (struct Node *root){
+int size(struct Node *root) {
     if (root == NULL) return 0;
 
     size(root->left + 1 + size(root->right));
 }
 
-int maxDepth(struct Node *q){
+int maxDepth(struct Node *q) {
     if (q == NULL) return 0;
 
     int lDepth = maxDepth(q->left);
     int rDepth = maxDepth(q->right);
 
-    if (lDepth > rDepth) return (lDepth + 1);
-    else return(rDepth + 1);
+    if (lDepth > rDepth)
+        return (lDepth + 1);
+    else
+        return (rDepth + 1);
 }
 
-int minValue(struct Node *q){
+int minValue(struct Node *q) {
     struct Node *q2 = q;
 
     while (q2->left != NULL)
@@ -55,7 +59,7 @@ int minValue(struct Node *q){
 
 //Yapraklar alınsın 1.seviyeye gitsin vs.
 
-void mirror(struct Node *q){
+void mirror(struct Node *q) {
     if (q == NULL) return;
 
     struct Node *temp;
@@ -66,7 +70,6 @@ void mirror(struct Node *q){
     temp = q->left;
     q->left = q->right;
     q->right = temp;
-
 }
 
 int main() {
