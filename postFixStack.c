@@ -1,17 +1,17 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 
-struct Stack{
+struct Stack {
     int top;
     int *array;
     unsigned capacity;
 };
 
-struct Stack* createStack(unsigned capacity){
+struct Stack *createStack(unsigned capacity) {
     struct Stack *stack = (struct Stack *)malloc(sizeof(struct Stack));
-    
+
     stack->top = -1;
     stack->capacity = capacity;
     stack->array = (int *)malloc(stack->capacity * sizeof(int));
@@ -47,20 +47,30 @@ int peek(struct Stack *stack) {
 
 // strlen = bir string dizisinin uzunlugu -> string.h icinde
 // isdigit = numara olup olmadigini kontrol eder -> ctype.h icinde
-int calcPostfix(char *expression){
+int calcPostfix(char *expression) {
     struct Stack *stack = createStack(strlen(expression));
 
-    for (int i = 0; i < strlen(expression); i++){
-        if (isdigit(expression[i])) push(stack, expression[i] - '0'); //- '0' karakter atanamasın demek
-        else{
+    for (int i = 0; i < strlen(expression); i++) {
+        if (isdigit(expression[i]))
+            push(stack, expression[i] - '0');  //- '0' karakter atanamasın demek
+        else {
             int val1 = pop(stack);
             int val2 = pop(stack);
-            switch(expression[i]){
-                case '+': push(stack, val2 + val1); break;
-                case '-': push(stack, val2 - val1); break;
-                case '/': push(stack, val2 / val1); break;
-                case '*': push(stack, val2 * val1); break;
-                default: printf("Gecersiz Operator\n");
+            switch (expression[i]) {
+                case '+':
+                    push(stack, val2 + val1);
+                    break;
+                case '-':
+                    push(stack, val2 - val1);
+                    break;
+                case '/':
+                    push(stack, val2 / val1);
+                    break;
+                case '*':
+                    push(stack, val2 * val1);
+                    break;
+                default:
+                    printf("Gecersiz Operator\n");
             }
         }
     }
@@ -68,7 +78,7 @@ int calcPostfix(char *expression){
     return pop(stack);
 }
 
-int main(){
+int main() {
     char str[] = "2345+-6/*";
     printf("Sonuc: %d\n", calcPostfix(str));
     return 0;
